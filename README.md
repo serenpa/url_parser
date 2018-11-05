@@ -27,13 +27,13 @@ Using the parser, they are all detected as accessing the same resource:
 
 	for url in urls:
 		parsed_url = url_parser.parse_url(url)
-		
+
 		if parsed_url["base_url"] not in base_urls:
 			base_urls.append(parsed_url["base_url"])
-			
+
 		if parsed_url["full_domain"] not in domains:
 			domains.append(parsed_url["full_domain"])
-	
+
 	print(base_urls, domains)
 ```
 
@@ -52,25 +52,29 @@ url_parser.parse_url("http://www.foo.com:80/bar?c=d#comments'")
 Returns the following JSON object:
 ```JSON
 {
-    'url': 'http://www.foo.com:80/bar?c=d#comments', 
-    'protocol': 'http', 
-    'subdomain': 'www', 
-    'domain': 'foo', 
-    'port': '80', 
-    'path': 'bar', 
+    'url': 'http://www.foo.com:80/bar?c=d#comments',
+    'protocol': 'http',
+    'subdomain': 'www',
+    'domain': 'foo',
+    'port': '80',
+    'path': 'bar',
     'query_params': [
         {
-            'param': 'c', 
+            'param': 'c',
             'value': 'd'
         }
-    ], 
-    'bookmark': 'comments', 
+    ],
+    'bookmark': 'comments',
     'base_url': 'www.foo.com/bar/',
-    'full_domain': 'www.foo.com', 
+    'full_domain': 'www.foo.com',
     'tld': 'com'
 }
 ```
-
+get_base_url_with_query_params(url):
+	"""
+		Returns the extracted base_url with query parameters
+		(subdomain + domain + tld + path + query_params)
+	"""
 ## Functions
 
 | Function | Explaination |
@@ -87,11 +91,10 @@ Returns the following JSON object:
 | get_tld(url) | Extracts the TLD from the URL |
 | get_all_tlds() | Returns a list of TLDs from file |
 | get_protocol(url, default="http") | Extracts the protocol, or returns value of default param (defaults to http) |
+| get_base_url_with_query_params(url) | Returns the extracted base_url with query parameters (subdomain + domain + tld + path + query_params) |
 
 
 
 
 ## License
 MIT
-
-
