@@ -172,7 +172,7 @@ def get_port(url, default="80"):
 		Extracts the port, or returns value of default param (defaults to 80)
 	"""
 	if url.find("//") != -1:
-		url = url[url.find("//"):]
+		url = url[url.find("//")+2:url.find("/",url.find("//")+2)]
 
 	parts = url.split(":")
 
@@ -193,7 +193,7 @@ def get_port(url, default="80"):
 	elif len(parts) == 1:
 		return default
 	else:
-		raise Exception("More than one : was found in the URL, or the URL is empty")
+		raise Exception("More than one : was found in the URL, or the URL is empty: " + url)
 
 
 
@@ -232,7 +232,7 @@ def get_query_parameters(url):
 
 				if len(item_parts) == 1:
 					item_parts.append("")
-					
+
 				res.append({
 					"param": item_parts[0],
 					"value": item_parts[1]
