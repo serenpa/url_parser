@@ -277,6 +277,27 @@ def get_base_url(url):
 
 
 
+def get_base_url_with_query_params(url):
+	"""
+		Returns the extracted base_url with query parameters
+		(subdomain + domain + tld + path + query_params)
+	"""
+	subdomain = get_subdomain(url)
+	domain = get_domain(url)
+	path = get_path(url)
+	tld = get_tld(url)
+
+	query_params = get_query_parameters(url)
+
+	qp_string = "?"
+
+	for param in query_params:
+		qp_string += param["param"] + "=" + param["value"] + "&"
+
+	return "{0}.{1}.{2}/{3}{4}".format(subdomain, domain, tld, path, qp_string)
+
+
+
 def get_full_domain(url):
 	"""
 		Returns the extracted domain
@@ -304,6 +325,7 @@ def parse_url(url):
 	tld = get_tld(url)
 
 	base_url = get_base_url(url)
+	base_url_with_query_params = get_base_url_with_query_params(url)
 	full_domain = get_full_domain(url)
 
 
@@ -318,6 +340,7 @@ def parse_url(url):
 		"bookmark": bookmark,
 		"base_url": base_url,
 		"full_domain": full_domain,
+		"base_url_with_query_params": base_url_with_query_params,
 		"tld": tld
 	}
 
