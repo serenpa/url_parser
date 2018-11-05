@@ -247,14 +247,18 @@ def get_bookmark(url):
 	"""
 		Extracts the bookmark from the URL
 	"""
-	parts = url.split("#")
+    if url.find("#!") == -1:
+	    parts = url.split("#")
+    else:
+        path_parts = url.split("#!")
+        parts = path_parts.split("#")
 
-	if len(parts) == 2:
-		return parts[1]
-	elif len(parts) == 1:
-		return ""
-	else:
-		raise Exception("More than one # was found in the URL, or the URL is empty")
+    if len(parts) == 2:
+	    return parts[1]
+    elif len(parts) == 1:
+	    return ""
+    else:
+	    raise Exception("More than one # was found in the URL, or the URL is empty")
 
 
 
