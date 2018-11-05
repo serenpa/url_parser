@@ -227,11 +227,19 @@ def get_query_parameters(url):
 		items = query_params.split("&")
 
 		for i in items:
-			item_parts = i.split("=")
-			res.append({
-				"param": item_parts[0],
-				"value": item_parts[1]
-			})
+			try:
+				item_parts = i.split("=")
+
+				if len(item_parts) == 1:
+					item_parts.append("")
+					
+				res.append({
+					"param": item_parts[0],
+					"value": item_parts[1]
+				})
+			except Exception as e:
+				raise Exception("Error parsing: " + i)
+
 
 		return res
 
