@@ -6,7 +6,7 @@
 
 import codecs
 
-TLD_FILE = "/home/cosc/student/awi111/Dropbox/PhD/PhD Share - Ash and Austen/Citations Replication/code/Deduplication/url_parser/tlds.txt"
+TLD_FILE = "/home/cosc/student/awi111/Dropbox/PhD/PhD Share - Ash and Austen/Citations Replication/code/4_Deduplication/url_parser/tlds.txt"
 
 def get_protocol(url, default="http"):
 	"""
@@ -57,8 +57,7 @@ def get_tld(url):
 		if len(tld) > max_tld_length:
 			max_tld_length = len(tld)
 
-
-	if url.find("//") != -1:
+	if url.find("://") != -1:
 		url = url[url.find("//")+2:]
 
 	url = url[:url.find("/")]
@@ -95,7 +94,7 @@ def get_domain(url):
 	"""
 		Extracts the domain from the URL
 	"""
-	if url.find("//") != -1:
+	if url.find("://") != -1:
 		url = url[url.find("//")+2:]
 
 	url = url[:url.find(get_tld(url))]
@@ -118,7 +117,7 @@ def get_subdomain(url, default="www"):
 	"""
 		Extracts the subdomain, or returns value of default param (defaults to www)
 	"""
-	if url.find("//") != -1:
+	if url.find("://") != -1:
 		url = url[url.find("//")+2:]
 
 	url = url[:url.find(get_domain(url))]
@@ -137,7 +136,7 @@ def get_path(url):
 	"""
 		Extracts the path from the URL
 	"""
-	if url.find("//") != -1:
+	if url.find("://") != -1:
 		url = url[url.find("//")+2:]
 
 	if url.find("/") != -1:
