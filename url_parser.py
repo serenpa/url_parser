@@ -146,15 +146,15 @@ def get_path(url):
 
 	clean_path = ""
 
-	if get_bookmark(path) == "" and get_query_parameters(path) == "":
+	if get_bookmark(path) == "" and len(get_query_parameters(path)) == 0:
 		clean_path = path
-	elif get_bookmark(path) != "" and get_query_parameters(path) == "":
+	elif get_bookmark(path) != "" and len(get_query_parameters(path)) == 0:
 		path = path.split("#")
 		clean_path = path[0]
-	elif get_bookmark(path) == "" and get_query_parameters(path) != "":
+	elif get_bookmark(path) == "" and len(get_query_parameters(path)) != 0:
 		path = path.split("?")
 		clean_path = path[0]
-	elif get_bookmark(path) != "" and get_query_parameters(path) != "":
+	elif get_bookmark(path) != "" and len(get_query_parameters(path)) != 0:
 		hash_pos = path.find("#")
 		query_pos = path.find("?")
 		clean_path = path[:min(hash_pos, query_pos)]
