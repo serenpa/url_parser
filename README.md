@@ -70,11 +70,7 @@ Returns the following JSON object:
     'tld': 'com'
 }
 ```
-get_base_url_with_query_params(url):
-	"""
-		Returns the extracted base_url with query parameters
-		(subdomain + domain + tld + path + query_params)
-	"""
+
 ## Functions
 
 | Function | Explaination |
